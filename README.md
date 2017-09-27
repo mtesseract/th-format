@@ -6,6 +6,8 @@ This is `th-format`, a compact Haskell package implementing support
 for format strings using Template Haskell quasi quoters. It requires
 the GHC extension `QuasiQuotes` to be enabled.
 
+This package is BSD3 licensed.
+
 ### Examples
 
 Using `th-format`, you can use naive variable interpolation instead of
