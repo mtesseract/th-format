@@ -1,0 +1,40 @@
+name: th-format
+version: '0.1.0.0'
+synopsis: Template Haskell based support for format strings
+description: This package implements a Template Haskell quasi quoter for
+             format strings.
+category: Data
+author: Moritz Schulte
+maintainer: mtesseract@silverratio.net
+copyright: 2017 Moritz Schulte
+license: BSD3
+github: mtesseract/th-format
+extra-source-files:
+- README.md
+library:
+  source-dirs: src
+  exposed-modules:
+  - Data.Format
+  ghc-options:
+  - -Wall
+  dependencies:
+  - base >=4.7 && <5
+  - Earley
+  - template-haskell
+  - text
+  - haskell-src-meta
+tests:
+  th-format-test:
+    main: Tests.hs
+    source-dirs: test
+    ghc-options:
+    - -Wall
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - th-format
+    - tasty
+    - tasty-hunit
+    - text
