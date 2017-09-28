@@ -86,8 +86,8 @@ instance Lift Fmt where
   lift (Identifier s) =
     lookupValueName s >>= \case
       Just v  -> (return . formatTextEmbed . VarE) v
-      Nothing -> error $ "Not in scope: '" ++ s ++ "'"
-  lift (Expression s) = either error (return . formatTextEmbed) (parseExp s)
+      Nothing -> fail $ "Not in scope: '" ++ s ++ "'"
+  lift (Expression s) = either fail (return . formatTextEmbed) (parseExp s)
 
 formatTextEmbed :: Exp -> Exp
 formatTextEmbed expr = AppE (VarE 'formatText) expr
@@ -115,7 +115,7 @@ parseFormatString s =
     ([uniqueResult], Report { unconsumed = "" }) ->
       uniqueResult
     _ ->
-      error "Parse failure"
+      fail "Parse failure"
 
 -- | Earley parser for the grammar of format strings.
 fmtParser :: Grammar r (Prod r String Char [Fmt])
