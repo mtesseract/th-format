@@ -4,9 +4,9 @@ synopsis: Template Haskell based support for format strings
 description: This package implements a Template Haskell quasi quoter for
              format strings.
 category: Data
-author: Moritz Schulte
+author: Moritz Clasmeier
 maintainer: mtesseract@silverratio.net
-copyright: 2017 Moritz Schulte
+copyright: 2017-2018 Moritz Clasmeier
 license: BSD3
 github: mtesseract/th-format
 extra-source-files:

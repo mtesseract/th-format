@@ -2,9 +2,10 @@
 
 ### About
 
-This is `th-format`, a compact Haskell package implementing support
-for format strings using Template Haskell quasi quoters. It requires
-the GHC extension `QuasiQuotes` to be enabled.
+This is `th-format`, a Haskell package implementing support for format
+strings using Template Haskell quasi quoters. It requires the GHC
+extension `QuasiQuotes` to be enabled. Parsing is implemented using
+Earley.
 
 This package is BSD3 licensed.
 

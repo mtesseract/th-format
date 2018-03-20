@@ -1,3 +1,13 @@
+{-|
+Module      : Data.Format
+Description : QuasiQuoters for simple string interpolation.
+Copyright   : (c) Moritz Clasmeier, 2017-2018
+License     : BSD3
+Maintainer  : mtesseract@silverratio.net
+Stability   : experimental
+Portability : POSIX
+-}
+
 {-# LANGUAGE FlexibleContexts     #-}
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE LambdaCase           #-}
@@ -7,7 +17,7 @@
 
 module Data.Format
   ( fmt
-  , mconcat
+  , fmtConcat
   ) where
 
 import           Control.Applicative
@@ -20,6 +30,11 @@ import           Language.Haskell.TH
 import           Language.Haskell.TH.Quote
 import           Language.Haskell.TH.Syntax
 import           Text.Earley
+
+-- | This is just 'mconcat', reexported under a specialized name in
+-- order to avoid namespace clashes.
+fmtConcat :: Monoid a => [a] -> a
+fmtConcat = mconcat
 
 -- | Type class which needs to be implemented by types that should be
 -- usable for format string interpolation. For most types the this
@@ -97,7 +112,7 @@ newtype FmtString = FmtString [Fmt]
 instance Lift FmtString where
   lift (FmtString fmts) = do
     fmtExprs <- Prelude.mapM lift fmts
-    return $ AppE (VarE 'mconcat) (ListE fmtExprs) --stringE "FIXME"
+    return $ AppE (VarE 'fmtConcat) (ListE fmtExprs)
 
 -- | Parse the provided format string as a Template Haskell
 -- expression.
