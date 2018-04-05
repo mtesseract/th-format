@@ -32,4 +32,5 @@ tests =
      , testCase "Simple interpolations delimited by ws" ([fmt|$foo $foo|] @=? "FOO FOO")
      , testCase "Boolean toggle interpolation" (([fmt|${if toggle then ("on" :: Text) else "off"}|] :: Text) @=? "on")
      , testCase "Boolean toggle interpolation negated" (([fmt|${if (not toggle) then ("on" :: Text) else "off"}|] :: Text) @=? "off")
+     , testCase "Code interpolation surrounded by text" (([fmt|Hello ${mconcat ["hi", " ", "hi"] :: Text}!|]) @=? "Hello hi hi!")
      ]
