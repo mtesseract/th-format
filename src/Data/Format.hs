@@ -21,6 +21,7 @@ module Data.Format
   ) where
 
 import           Control.Applicative
+import           Control.Exception           (SomeException)
 import           Data.Char
 import           Data.Text                   (Text)
 import qualified Data.Text                   as Text
@@ -31,9 +32,9 @@ import           Language.Haskell.TH.Quote
 import           Language.Haskell.TH.Syntax
 import           Text.Earley
 
--- | This is just 'mconcat', reexported under a specialized name in
--- order to avoid namespace clashes.
-fmtConcat :: Monoid a => [a] -> a
+-- | This is just specialized 'mconcat', reexported under a
+-- specialized name in order to avoid namespace clashes.
+fmtConcat :: [Text] -> Text
 fmtConcat = mconcat
 
 -- | Type class which needs to be implemented by types that should be
@@ -46,6 +47,9 @@ class Format a where
   formatText :: a -> Text
 
 instance Format Int where
+  formatText = tshow
+
+instance Format SomeException where
   formatText = tshow
 
 instance Format String where
