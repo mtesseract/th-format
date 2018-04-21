@@ -18,6 +18,7 @@ Portability : POSIX
 module Data.Format
   ( fmt
   , fmtConcat
+  , Format(..)
   ) where
 
 import           Control.Applicative

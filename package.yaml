@@ -1,5 +1,5 @@
 name: th-format
-version: '0.1.1.0'
+version: '0.1.2.0'
 synopsis: Template Haskell based support for format strings
 description: This package implements a Template Haskell quasi quoter for
              format strings.
